@@ -66,13 +66,13 @@
 }
 
 button {
-    width: 48px;
-    height: 48px;
-    margin: 4px;
-    border-radius: 4px;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0.1em;
+    border-radius: 0.1em;
     border: none;
     background-color: #d3d6da;
-    font-size: 1.2em;
+    font-size: 0.9em;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
@@ -88,5 +88,4 @@ button:focus {
 
 .one-and-a-half {
     flex: 1.5;
-    font-size: 1em;
 }
