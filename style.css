@@ -10,6 +10,7 @@
 
 #play-again {
     visibility: hidden;
+    z-index: 1000;
     position: absolute;
     top: 1em;
     height: 1em;

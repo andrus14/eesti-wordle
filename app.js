@@ -55,7 +55,7 @@ function initGame () {
 
 function gameOver () {
     playAgain.style.visibility = 'visible';
-    correctAnswer.innerText = 'Õige sõna: ' + correctWord.tou();
+    correctAnswer.innerText = 'Õige sõna: ' + correctWord.toUpperCase();
 }
 
 function testKey ( key ) {
