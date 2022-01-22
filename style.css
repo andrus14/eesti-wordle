@@ -3,21 +3,36 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    margin-top: 64px;
+    margin-top: 1.5em;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
-#not-a-word {
-    visibility: none;
-    opacity: 0;
-    margin-bottom: 64px;    
+#play-again {
+    visibility: hidden;
+    position: absolute;
+    top: 1em;
     height: 1em;
-    font-size: 24px;
+    font-size: 1em;
     color: white;
     background-color: black;
     padding: 0.6em;
     border-radius: 0.3em;
+}
+
+#not-a-word {
+    opacity: 0;
+    height: 1em;
+    font-size: 1em;
+    color: white;
+    background-color: black;
+    padding: 0.6em;
+    border-radius: 0.3em;
+}
+
+#correct-answer {
+    margin: 1em;
+    height: 1em;
 }
 
 @keyframes visible { 

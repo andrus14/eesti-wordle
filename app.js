@@ -1,7 +1,9 @@
 const alphabet = ['a', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 'š', 'z', 'ž', 't', 'u', 'v', 'õ', 'ä', 'ö', 'ü'];
 let words = [];
 let correctWord = '';
+const playAgain = document.querySelector('#play-again');
 const notAWord = document.querySelector('#not-a-word');
+const correctAnswer = document.querySelector('#correct-answer');
 const cells = document.querySelectorAll('.letter');
 const buttons = document.querySelectorAll('button');
 let nextCellCoords = [0, 0];
@@ -27,14 +29,33 @@ fetch('words.txt')
     });
 });
 
+playAgain.addEventListener('click', e => {
+    initGame();
+});
+
 function initGame () {
+    nextCellCoords = [0, 0];
+    currentWord = '';
+
+    Array.from(buttons).forEach(btn => {
+        btn.classList.remove('correct-cell', 'present-cell', 'absent-cell');
+    });
+
+    Array.from(cells).forEach(cell => {
+        cell.innerText = '';
+        cell.classList.remove('correct-cell', 'present-cell', 'absent-cell');
+    });
+
+    playAgain.style.visibility = 'hidden';
+
+    correctAnswer.innerText = '';
+
     correctWord = words[Math.floor(Math.random() * words.length)];
-    // console.log(correctWord);
 }
 
 function gameOver () {
-    // notAWord.innerText = 'Järgmine sõna';
-    // notAWord.classList.add('new-game');
+    playAgain.style.visibility = 'visible';
+    correctAnswer.innerText = 'Õige sõna: ' + correctWord.tou();
 }
 
 function testKey ( key ) {
@@ -66,7 +87,7 @@ function testKey ( key ) {
 }
 
 function testWord ( correctW, playerW, y ) {
-    let isCorrectWord = true;
+    let isGameOver = true;
     for ( let i = 0; i < playerW.length; i++ ) {
         let letter = playerW.charAt(i);
         const correctCell = document.querySelector(`.letter[data-x="${i}"][data-y="${y}"]`);
@@ -77,13 +98,17 @@ function testWord ( correctW, playerW, y ) {
         } else if ( correctW.includes(letter) ) {
             correctCell.classList.add('present-cell');
             letterBtn.classList.add('present-cell');
-            isCorrectWord = false;
+            isGameOver = false;
         } else {
             correctCell.classList.add('absent-cell');
             letterBtn.classList.add('absent-cell');
-            isCorrectWord = false;
+            isGameOver = false;
         }
     }
 
-    return isCorrectWord;
+    if ( y == 5 ) {
+        isGameOver = true;
+    }
+
+    return isGameOver;
 }
